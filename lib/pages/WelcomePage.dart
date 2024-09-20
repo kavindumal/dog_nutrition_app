@@ -1,3 +1,4 @@
+import 'package:dog_nutrition_app/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -251,7 +252,10 @@ class SignupPage extends StatelessWidget {
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle Get Started action
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GetStartedPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF0077B6),
