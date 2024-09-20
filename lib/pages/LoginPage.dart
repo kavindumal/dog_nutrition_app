@@ -1,11 +1,12 @@
+import 'package:dog_nutrition_app/pages/CreateAccountPage.dart';
 import 'package:flutter/material.dart';
 
-class GetStartedPage extends StatefulWidget {
+class Loginpage extends StatefulWidget {
   @override
-  _GetStartedPageState createState() => _GetStartedPageState();
+  _LoginpageState createState() => _LoginpageState();
 }
 
-class _GetStartedPageState extends State<GetStartedPage> {
+class _LoginpageState extends State<Loginpage> {
   final _formKey = GlobalKey<FormState>();
   bool _termsAccepted = false;
 
@@ -84,7 +85,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 200),
               SizedBox(
                 width: double.infinity,
                 height: 56,
@@ -95,12 +96,16 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF0077B6),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(25.36),
                     ),
                   ),
                   child: Text(
-                    'Log in',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    "Log in",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -114,7 +119,10 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Navigate to Signup Page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CreateAccountPage()),
+                      );
                     },
                     child: Text(
                       ' Create Account',
@@ -123,40 +131,6 @@ class _GetStartedPageState extends State<GetStartedPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 30),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Divider(color: Colors.grey.shade300),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text('or'),
-                  ),
-                  Expanded(
-                    child: Divider(color: Colors.grey.shade300),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              // Social Buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      // Google Sign In
-                    },
-                    child: Image.asset('assets/icon/google_icon.png', height: 30),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Facebook Sign In
-                    },
-                    child: Image.asset('assets/icon/facebook_icon.png', height: 30),
                   ),
                 ],
               ),

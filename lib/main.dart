@@ -1,3 +1,4 @@
+import 'package:dog_nutrition_app/pages/CreateAccountPage.dart';
 import 'package:dog_nutrition_app/pages/LoginPage.dart';
 import 'package:dog_nutrition_app/pages/WelcomePage.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: GetStartedPage(),
+      home: Welcomepage(),
     );
   }
 }

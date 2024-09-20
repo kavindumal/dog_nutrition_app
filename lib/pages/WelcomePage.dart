@@ -2,7 +2,7 @@ import 'package:dog_nutrition_app/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class SignupPage extends StatelessWidget {
+class Welcomepage extends StatelessWidget {
   final PageController controller = PageController();
 
   @override
@@ -254,7 +254,7 @@ class SignupPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => GetStartedPage()),
+                      MaterialPageRoute(builder: (context) => Loginpage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
