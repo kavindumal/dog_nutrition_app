@@ -13,6 +13,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE8F6FF),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -96,7 +97,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         _termsAccepted = value!;
                       });
                     },
-                    activeColor: Color(0xFFFF7643), // Orange color for checkbox
+                    activeColor: Color(0xFFFF7643),
                   ),
                   Expanded(
                     child: Text.rich(
@@ -107,14 +108,14 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           TextSpan(
                             text: "Terms of Service",
                             style: TextStyle(
-                              color: Color(0xFF0077B6), // Orange color
+                              color: Color(0xFF0077B6),
                             ),
                           ),
                           TextSpan(text: " and "),
                           TextSpan(
                             text: "Privacy Policy",
                             style: TextStyle(
-                              color: Color(0xFF0077B6), // Orange color
+                              color: Color(0xFF0077B6),
                             ),
                           ),
                         ],
@@ -160,7 +161,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF0077B6), // Orange color
+                    backgroundColor: Color(0xFF0077B6),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0),
                     ),

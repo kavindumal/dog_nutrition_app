@@ -1,3 +1,4 @@
+import 'package:dog_nutrition_app/pages/CreateAccountPage.dart';
 import 'package:dog_nutrition_app/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -8,7 +9,8 @@ class Welcomepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      backgroundColor: Color(0xFFE8F6FF),
+        body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,7 +256,7 @@ class Welcomepage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Loginpage()),
+                      MaterialPageRoute(builder: (context) => CreateAccountPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

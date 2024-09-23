@@ -1,6 +1,8 @@
 import 'package:dog_nutrition_app/pages/CreateAccountPage.dart';
 import 'package:flutter/material.dart';
 
+import 'ForgetPwPage.dart';
+
 class Loginpage extends StatefulWidget {
   @override
   _LoginpageState createState() => _LoginpageState();
@@ -13,6 +15,7 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE8F6FF),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Form(
@@ -74,7 +77,10 @@ class _LoginpageState extends State<Loginpage> {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: () {
-                    // Forgot Password Screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                    );
                   },
                   child: Text(
                     'Forgot Password?',
