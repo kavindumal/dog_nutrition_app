@@ -8,7 +8,8 @@ class MePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFE8F6FF),
       appBar: AppBar(
-        title: const Text('Shop'),
+        automaticallyImplyLeading: false,
+        title: const Text('Profile Settings'),
         backgroundColor: Colors.white,
       ),
       body: Center(

@@ -1,3 +1,4 @@
+import 'package:dog_nutrition_app/pages/dashboard/pages/CartPage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,8 +9,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFE8F6FF),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
-          'Shop',
+          'Home',
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
@@ -18,7 +20,10 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.shopping_cart, color: Colors.black),
             onPressed: () {
-              // Navigate to cart
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => CartPage())
+              );
             },
           ),
         ],
