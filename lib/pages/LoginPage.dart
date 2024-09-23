@@ -1,4 +1,5 @@
 import 'package:dog_nutrition_app/pages/CreateAccountPage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/DashboardPage.dart';
 import 'package:flutter/material.dart';
 
 import 'ForgetPwPage.dart';
@@ -97,7 +98,10 @@ class _LoginpageState extends State<Loginpage> {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Sign In
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DashboardScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF0077B6),
