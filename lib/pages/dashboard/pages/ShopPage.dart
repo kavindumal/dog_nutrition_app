@@ -6,9 +6,10 @@ class ShopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE8F6FF),
       appBar: AppBar(
         title: const Text('Shop'),
-        backgroundColor: const Color(0xFF047BCE),
+        backgroundColor: Colors.white,
       ),
       body: Center(
         child: const Text('Shop Page Content Here'),

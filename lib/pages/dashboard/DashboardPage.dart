@@ -1,11 +1,10 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/CartPage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/EducationPage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/HomePage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/MePage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/ShopPage.dart';
 import 'package:flutter/material.dart';
-
-import 'EducationPage.dart';
-import 'HomePage.dart';
-import 'MePage.dart';
-import 'ShopPage.dart';
-import 'CartPage.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
