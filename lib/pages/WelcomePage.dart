@@ -1,5 +1,4 @@
 import 'package:dog_nutrition_app/pages/CreateAccountPage.dart';
-import 'package:dog_nutrition_app/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -23,34 +22,34 @@ class Welcomepage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30), // Top padding
+                      SizedBox(height: 60), // Top padding
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "Meet your",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "dogs needs",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "here",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
@@ -61,12 +60,12 @@ class Welcomepage extends StatelessWidget {
                           height: 250,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 80),
                       Center(
                         child: Text(
                           "Get interesting promos here, register your",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Color(0xFF898989),
                           ),
                           textAlign: TextAlign.center,
@@ -76,7 +75,7 @@ class Welcomepage extends StatelessWidget {
                         child: Text(
                           "account immediately so you can meet your",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Color(0xFF898989),
                           ),
                           textAlign: TextAlign.center,
@@ -86,7 +85,7 @@ class Welcomepage extends StatelessWidget {
                         child: Text(
                           "animal needs.",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Color(0xFF898989),
                           ),
                           textAlign: TextAlign.center,
@@ -95,38 +94,37 @@ class Welcomepage extends StatelessWidget {
                     ],
                   ),
 
-                  // Page 2
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30),
+                      SizedBox(height: 60),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "Track your",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "dog’s health",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "progress",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
@@ -137,12 +135,12 @@ class Welcomepage extends StatelessWidget {
                           height: 250,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 80),
                       Center(
                         child: Text(
                           "Monitor your pet’s health, activity, and",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Color(0xFF898989),
                           ),
                           textAlign: TextAlign.center,
@@ -152,7 +150,7 @@ class Welcomepage extends StatelessWidget {
                         child: Text(
                           "nutrition to ensure their well-being.",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Color(0xFF898989),
                           ),
                           textAlign: TextAlign.center,
@@ -165,34 +163,34 @@ class Welcomepage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30),
+                      SizedBox(height: 60),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "Discover our",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "community",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           "now",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 45,
+                            fontSize: 35,
                           ),
                         ),
                       ),
@@ -203,12 +201,12 @@ class Welcomepage extends StatelessWidget {
                           height: 250,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 80),
                       Center(
                         child: Text(
                           "Discover new education futures for the",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Color(0xFF898989),
                           ),
                           textAlign: TextAlign.center,
@@ -218,7 +216,7 @@ class Welcomepage extends StatelessWidget {
                         child: Text(
                           "more knowledgement about your dog",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Color(0xFF898989),
                           ),
                           textAlign: TextAlign.center,
@@ -229,8 +227,7 @@ class Welcomepage extends StatelessWidget {
                 ],
               ),
             ),
-
-            // SmoothPageIndicator
+            SizedBox(height: 20),
             Center(
               child: SmoothPageIndicator(
                 controller: controller,
@@ -247,7 +244,7 @@ class Welcomepage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 40), // Spacing between indicator and button
+            SizedBox(height: 20),
             Center(
               child: SizedBox(
                 width: MediaQuery.of(context).size.width - 80,

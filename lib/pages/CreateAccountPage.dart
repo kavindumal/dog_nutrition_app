@@ -21,11 +21,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 30), // Spacing from top
+              SizedBox(height: 60), // Spacing from top
               Text(
                 'Create New\nAccount!',
                 style: TextStyle(
-                  fontSize: 45,
+                  fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -34,7 +34,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               Text(
                 "Water is life. Water is a basic human need. In various lines of life, humans need water.",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 13,
                   color: Colors.grey,
                 ),
               ),
@@ -97,7 +97,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         _termsAccepted = value!;
                       });
                     },
-                    activeColor: Color(0xFFFF7643),
+                    activeColor: Color(0xFF0077B6),
                   ),
                   Expanded(
                     child: Text.rich(

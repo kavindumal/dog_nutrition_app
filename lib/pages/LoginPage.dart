@@ -24,11 +24,11 @@ class _LoginpageState extends State<Loginpage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 30),
+              SizedBox(height: 60),
               Text(
                 'Hello,\nWelcome Back!',
                 style: TextStyle(
-                  fontSize: 45,
+                  fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -37,7 +37,7 @@ class _LoginpageState extends State<Loginpage> {
               Text(
                 'Water is life. Water is a basic human need. In various lines of life, humans need water.',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 13,
                   color: Colors.grey,
                 ),
               ),
