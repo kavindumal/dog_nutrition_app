@@ -143,7 +143,7 @@ class DashboardScreenState extends State<DashboardScreen> with TickerProviderSta
       case 2:
         return const EducationPage();
       case 3:
-        return const MePage();
+        return const ProfilePage();
       default:
         return const HomePage();
     }
