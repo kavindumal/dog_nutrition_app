@@ -54,7 +54,6 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFE8F6FF),
-
       appBar: AppBar(
         title: const Text('Shopping Cart'),
         backgroundColor: Colors.white,
