@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "998353704086",
+    "project_id": "dog-nutrition-6d36b",
+    "storage_bucket": "dog-nutrition-6d36b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998353704086:android:e51ca3759a45e9a6f4deb7",
+        "android_client_info": {
+          "package_name": "com.example.dog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_lca3YzsGWqjr_pYS6GRluXcqE2QUC7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,8 @@
-import 'package:dog_nutrition_app/pages/CreateAccountPage.dart';
-import 'package:dog_nutrition_app/pages/dashboard/DashboardPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'CreateAccountPage.dart';
 import 'ForgetPwPage.dart';
+import 'dashboard/DashboardPage.dart';
 
 class Loginpage extends StatefulWidget {
   @override
@@ -11,7 +11,39 @@ class Loginpage extends StatefulWidget {
 
 class _LoginpageState extends State<Loginpage> {
   final _formKey = GlobalKey<FormState>();
-  bool _termsAccepted = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  static String emailAddressLoggedIn = '';
+
+  bool _isLoading = false;
+  String? _errorMessage;
+
+  Future<void> _loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      emailAddressLoggedIn = _emailController.text;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DashboardScreen()),
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _errorMessage = e.message;
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +74,16 @@ class _LoginpageState extends State<Loginpage> {
                 ),
               ),
               SizedBox(height: 30),
+              if (_errorMessage != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    _errorMessage!,
+                    style: TextStyle(color: Colors.red, fontSize: 14),
+                  ),
+                ),
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   hintText: 'Email',
                   hintStyle: TextStyle(color: Colors.grey),
@@ -56,9 +97,16 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20),
               TextFormField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   hintStyle: TextStyle(color: Colors.grey),
@@ -72,6 +120,12 @@ class _LoginpageState extends State<Loginpage> {
                   ),
                 ),
                 obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20),
               Align(
@@ -98,10 +152,9 @@ class _LoginpageState extends State<Loginpage> {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DashboardScreen()),
-                    );
+                    if (_formKey.currentState!.validate()) {
+                      _loginUser();
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF0077B6),
@@ -109,7 +162,9 @@ class _LoginpageState extends State<Loginpage> {
                       borderRadius: BorderRadius.circular(25.36),
                     ),
                   ),
-                  child: Text(
+                  child: _isLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : Text(
                     "Log in",
                     style: TextStyle(
                       color: Colors.white,

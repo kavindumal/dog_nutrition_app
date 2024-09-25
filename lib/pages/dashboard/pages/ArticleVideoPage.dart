@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 class ArticleVideoPage extends StatefulWidget {
   final String title;
   final String description;
-  final String videoUrl; // YouTube video URL or article link
+  final String videoUrl;
 
   const ArticleVideoPage({
     super.key,
@@ -21,21 +21,18 @@ class _ArticleVideoPageState extends State<ArticleVideoPage> {
   bool isLiked = false;
   bool isBookmarked = false;
 
-  // Toggle like
   void _toggleLike() {
     setState(() {
       isLiked = !isLiked;
     });
   }
 
-  // Toggle bookmark
   void _toggleBookmark() {
     setState(() {
       isBookmarked = !isBookmarked;
     });
   }
 
-  // Launch video or article URL in the browser
   Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -80,7 +77,6 @@ class _ArticleVideoPageState extends State<ArticleVideoPage> {
     );
   }
 
-  // Video section with a play button to launch video in browser
   Widget _buildVideoSection() {
     return GestureDetector(
       onTap: () => _launchURL(widget.videoUrl),
@@ -90,7 +86,7 @@ class _ArticleVideoPageState extends State<ArticleVideoPage> {
           Container(
             height: 200,
             width: double.infinity,
-            color: Colors.grey[300], // Placeholder for video thumbnail
+            color: Colors.grey[300],
             child: Icon(Icons.play_circle_filled, size: 80, color: Colors.white),
           ),
           Positioned(
@@ -106,7 +102,6 @@ class _ArticleVideoPageState extends State<ArticleVideoPage> {
     );
   }
 
-  // Like and share buttons
   Widget _buildActionButtons() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -130,15 +125,13 @@ class _ArticleVideoPageState extends State<ArticleVideoPage> {
           const Text(
             '100 Likes',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          ), // Example: display likes count
+          ),
         ],
       ),
     );
   }
 
-  // Function to share content via system's share menu
   void _shareContent() {
-    // For sharing functionality, you can use packages like share_plus or similar.
     print('Share this article/video');
   }
 }

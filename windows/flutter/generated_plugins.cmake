@@ -3,7 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  share_plus
+  cloud_firestore
+  firebase_auth
+  firebase_core
   url_launcher_windows
 )
 
