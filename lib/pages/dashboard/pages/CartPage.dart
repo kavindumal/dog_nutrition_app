@@ -23,27 +23,22 @@ class _CartPageState extends State<CartPage> {
     },
   ];
 
-  double _taxRate = 0.07; // Example tax rate of 7%
+  double _taxRate = 0.07;
 
-  // Calculate subtotal
   double get _subtotal {
     return _cartItems.fold(0.0, (sum, item) => sum + (item['price'] * item['quantity']));
   }
 
-  // Calculate tax
   double get _tax => _subtotal * _taxRate;
 
-  // Calculate total
   double get _total => _subtotal + _tax;
 
-  // Update item quantity
   void _updateQuantity(int index, int quantity) {
     setState(() {
       _cartItems[index]['quantity'] = quantity;
     });
   }
 
-  // Remove item from cart
   void _removeItem(int index) {
     setState(() {
       _cartItems.removeAt(index);
@@ -69,7 +64,6 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  // Cart items list
   Widget _buildCartList() {
     return ListView.builder(
       itemCount: _cartItems.length,
@@ -113,7 +107,6 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  // Summary section
   Widget _buildSummary() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -129,7 +122,6 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  // Build summary row for subtotal, tax, and total
   Widget _buildSummaryRow(String label, double value, {bool isTotal = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,13 +132,11 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  // Checkout button
   Widget _buildCheckoutButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ElevatedButton(
         onPressed: () {
-          // Navigate to checkout page or handle checkout logic
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,

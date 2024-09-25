@@ -29,7 +29,7 @@ class _LoginpageState extends State<Loginpage> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      emailAddressLoggedIn = _emailController.text;
+      emailAddressLoggedIn = _emailController.text.trim();
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => DashboardScreen()),

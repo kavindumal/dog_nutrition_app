@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ProductCatalogPage extends StatefulWidget {
@@ -7,61 +8,38 @@ class ProductCatalogPage extends StatefulWidget {
   _ProductCatalogPageState createState() => _ProductCatalogPageState();
 }
 
+
+
 class _ProductCatalogPageState extends State<ProductCatalogPage> {
   List<String> _filters = ['Brand', 'Type', 'Age Group'];
   String _selectedSort = 'Price: Low to High';
-  List<Map<String, dynamic>> _products = [
-    {
-      'name': 'Premium Dry Dog Food',
-      'price': 39.99,
-      'image': 'https://via.placeholder.com/150',
-      'description': 'High-quality dry food for adult dogs. Provides balanced nutrition and promotes healthy skin and coat.',
-      'brand': 'DogFoodCo',
-      'type': 'Dry',
-      'ageGroup': 'Adult',
-      'reviews': '4.5/5 (250 reviews)',
-    },
-    {
-      'name': 'Grain-Free Wet Food',
-      'price': 29.99,
-      'image': 'https://via.placeholder.com/150',
-      'description': 'Grain-free wet food, perfect for sensitive stomachs. Ideal for puppies.',
-      'brand': 'PetFeast',
-      'type': 'Wet',
-      'ageGroup': 'Puppy',
-      'reviews': '4.7/5 (120 reviews)',
-    },
-    {
-      'name': 'Senior Dog Supplements',
-      'price': 19.99,
-      'image': 'https://via.placeholder.com/150',
-      'description': 'Supplements to boost immunity and support joint health in senior dogs.',
-      'brand': 'HealthPaws',
-      'type': 'Supplements',
-      'ageGroup': 'Senior',
-      'reviews': '4.3/5 (80 reviews)',
-    },
-    {
-      'name': 'Senior Dog Supplements',
-      'price': 25.99,
-      'image': 'https://via.placeholder.com/150',
-      'description': 'Supplements to boost immunity and support joint health in senior dogs.',
-      'brand': 'HealthPaws',
-      'type': 'Supplements',
-      'ageGroup': 'Senior',
-      'reviews': '4.3/5 (80 reviews)',
-    },
-    {
-      'name': 'Senior Dog Supplements',
-      'price': 06.99,
-      'image': 'https://via.placeholder.com/150',
-      'description': 'Supplements to boost immunity and support joint health in senior dogs.',
-      'brand': 'HealthPaws',
-      'type': 'Supplements',
-      'ageGroup': 'Senior',
-      'reviews': '4.3/5 (80 reviews)',
-    },
-  ];
+
+  List<Map<String, dynamic>> _products = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchProducts();
+  }
+
+  Future<void> _fetchProducts() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('products')
+          .get();
+
+      List<Map<String, dynamic>> products = snapshot.docs.map((doc) {
+        return doc.data() as Map<String, dynamic>;
+      }).toList();
+
+      setState(() {
+        _products = products;
+        _sortProducts(_selectedSort);
+      });
+    } catch (e) {
+      print('Error fetching products: $e');
+    }
+  }
 
   void _sortProducts(String sortBy) {
     setState(() {
@@ -85,8 +63,7 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
               return CheckboxListTile(
                 title: Text(filter),
                 value: true,
-                onChanged: (bool? value) {
-                },
+                onChanged: (bool? value) {},
               );
             }).toList(),
           ),
@@ -112,15 +89,16 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE8F6FF),
+      backgroundColor: const Color(0xFFE8F6FF),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Dog Food & Nutrition'),
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.filter_list, color: Colors.black),
-            onPressed: _showFilterDialog, // Open filter dialog
+            onPressed: _showFilterDialog,
           ),
         ],
       ),
@@ -133,7 +111,6 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
     );
   }
 
-  // Sorting dropdown menu
   Widget _buildSortingOptions() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -142,7 +119,7 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
           const Text('Sort by:'),
           const SizedBox(width: 8),
           DropdownButton<String>(
-            dropdownColor: Color(0xFFE8F6FF),
+            dropdownColor: const Color(0xFFE8F6FF),
             value: _selectedSort,
             items: const [
               DropdownMenuItem(value: 'Price: Low to High', child: Text('Price: Low to High')),
@@ -161,6 +138,10 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
   }
 
   Widget _buildProductList() {
+    if (_products.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return ListView.builder(
       padding: const EdgeInsets.all(8.0),
       itemCount: _products.length,
@@ -172,7 +153,12 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
           elevation: 2,
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: ListTile(
-            leading: Image.network(product['image'], width: 80, height: 80, fit: BoxFit.cover),
+            leading: Image.network(
+              product['image'],
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+            ),
             title: Text(product['name'], style: const TextStyle(fontWeight: FontWeight.bold)),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

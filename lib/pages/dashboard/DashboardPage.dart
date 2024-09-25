@@ -3,6 +3,7 @@ import 'package:dog_nutrition_app/pages/dashboard/pages/CartPage.dart';
 import 'package:dog_nutrition_app/pages/dashboard/pages/EducationPage.dart';
 import 'package:dog_nutrition_app/pages/dashboard/pages/HomePage.dart';
 import 'package:dog_nutrition_app/pages/dashboard/pages/MePage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/ProductListningPage.dart';
 import 'package:dog_nutrition_app/pages/dashboard/pages/ShopPage.dart';
 import 'package:flutter/material.dart';
 
@@ -139,7 +140,7 @@ class DashboardScreenState extends State<DashboardScreen> with TickerProviderSta
       case 0:
         return const HomePage();
       case 1:
-        return const ShopPage();
+        return const ProductCatalogPage();
       case 2:
         return const EducationPage();
       case 3:

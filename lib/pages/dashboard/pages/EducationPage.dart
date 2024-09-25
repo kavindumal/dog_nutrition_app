@@ -36,7 +36,7 @@ class EducationPage extends StatelessWidget {
       backgroundColor: Color(0xFFE8F6FF),
       appBar: AppBar(
         title: const Text('Educational Content'),
-
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
       ),
