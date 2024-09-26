@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'ItemPage.dart'; // Assuming this contains your ItemDescriptionPage
 
 class ProductCatalogPage extends StatefulWidget {
   const ProductCatalogPage({super.key});
@@ -8,12 +9,9 @@ class ProductCatalogPage extends StatefulWidget {
   _ProductCatalogPageState createState() => _ProductCatalogPageState();
 }
 
-
-
 class _ProductCatalogPageState extends State<ProductCatalogPage> {
   List<String> _filters = ['Brand', 'Type', 'Age Group'];
   String _selectedSort = 'Price: Low to High';
-
   List<Map<String, dynamic>> _products = [];
 
   @override
@@ -62,8 +60,10 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
             children: _filters.map((filter) {
               return CheckboxListTile(
                 title: Text(filter),
-                value: true,
-                onChanged: (bool? value) {},
+                value: true, // You can manage the filter state as needed
+                onChanged: (bool? value) {
+                  // Handle filter change
+                },
               );
             }).toList(),
           ),
@@ -147,34 +147,44 @@ class _ProductCatalogPageState extends State<ProductCatalogPage> {
       itemCount: _products.length,
       itemBuilder: (context, index) {
         final product = _products[index];
-        return Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          elevation: 2,
-          margin: const EdgeInsets.symmetric(vertical: 8.0),
-          child: ListTile(
-            leading: Image.network(
-              product['image'],
-              width: 80,
-              height: 80,
-              fit: BoxFit.cover,
-            ),
-            title: Text(product['name'], style: const TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(product['description']),
-                const SizedBox(height: 4),
-                Text('Brand: ${product['brand']}'),
-                Text('Type: ${product['type']}'),
-                Text('Age Group: ${product['ageGroup']}'),
-                const SizedBox(height: 8),
-                Text('Reviews: ${product['reviews']}', style: const TextStyle(color: Colors.grey)),
-              ],
-            ),
-            trailing: Text(
-              '\$${product['price'].toStringAsFixed(2)}',
-              style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ItemDescriptionPage(productName: product['name']),
+              ),
+            );
+          },
+          child: Card(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            elevation: 2,
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
+            child: ListTile(
+              leading: Image.network(
+                product['image'],
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+              title: Text(product['name'], style: const TextStyle(fontWeight: FontWeight.bold)),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(product['description']),
+                  const SizedBox(height: 4),
+                  Text('Brand: ${product['brand']}'),
+                  Text('Type: ${product['type']}'),
+                  Text('Age Group: ${product['ageGroup']}'),
+                  const SizedBox(height: 8),
+                  Text('Reviews: ${product['reviews']}', style: const TextStyle(color: Colors.grey)),
+                ],
+              ),
+              trailing: Text(
+                '\$${product['price'].toStringAsFixed(2)}',
+                style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         );

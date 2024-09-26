@@ -78,7 +78,7 @@ class _LoginpageState extends State<Loginpage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    _errorMessage!,
+                    "Invalid user credentials " + _errorMessage!,
                     style: TextStyle(color: Colors.red, fontSize: 14),
                   ),
                 ),
