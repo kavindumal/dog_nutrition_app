@@ -1,5 +1,6 @@
+import 'package:dog_nutrition_app/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Add this for Firestore
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'EditMePage.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -10,6 +11,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  // Initial values
   String name = '';
   String email = '';
   String address = '';
@@ -17,20 +19,21 @@ class _ProfilePageState extends State<ProfilePage> {
   String paymentMethod = '';
   String paypalAccount = '';
 
+  bool _isLoading = true;  // Add a loading state
+
   @override
   void initState() {
     super.initState();
     _fetchUserData();
   }
 
-  // Fetch user data from Firestore based on the logged-in user's email
   Future<void> _fetchUserData() async {
-    String emailLoggedIn = "LoginPage().emailAddressLoggedIn"; // Get from LoginPage()
+    // Fetch the logged-in email from static variable (assumed to be passed from the login page)
+    String emailLoggedIn = UserSession.emailAddressLoggedIn;
 
     try {
-      // Fetch user data from Firestore
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
-          .collection('users') // Adjust collection name to your Firestore structure
+          .collection('users')
           .doc(emailLoggedIn)
           .get();
 
@@ -43,11 +46,15 @@ class _ProfilePageState extends State<ProfilePage> {
           city = userSnapshot['cityPostal'] ?? 'N/A';
           paymentMethod = userSnapshot['bankCard'] ?? 'N/A';
           paypalAccount = userSnapshot['paypalEmail'] ?? 'N/A';
+          _isLoading = false; // Data is loaded
         });
       }
     } catch (e) {
       // Handle any errors here
       print('Error fetching user data: $e');
+      setState(() {
+        _isLoading = false; // Stop loading even if there's an error
+      });
     }
   }
 
@@ -61,7 +68,9 @@ class _ProfilePageState extends State<ProfilePage> {
         elevation: 0,
       ),
       backgroundColor: const Color(0xFFE8F6FF),
-      body: SingleChildScrollView(
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator()) // Show loader while fetching data
+          : SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,12 +106,12 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 8),
             ListTile(
               leading: const Icon(Icons.person, color: Colors.blue),
-              title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(name.isNotEmpty ? name : 'No Name Available', style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('Name'),
             ),
             ListTile(
               leading: const Icon(Icons.email, color: Colors.blue),
-              title: Text(email, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(email.isNotEmpty ? email : 'No Email Available', style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('Email'),
             ),
           ],
@@ -129,12 +138,12 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 8),
             ListTile(
               leading: const Icon(Icons.home, color: Colors.blue),
-              title: Text(address, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(address.isNotEmpty ? address : 'No Address Available', style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('Home Address'),
             ),
             ListTile(
               leading: const Icon(Icons.location_city, color: Colors.blue),
-              title: Text(city, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(city.isNotEmpty ? city : 'No City Available', style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('City & Postal Code'),
             ),
           ],
@@ -161,12 +170,12 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 8),
             ListTile(
               leading: const Icon(Icons.credit_card, color: Colors.blue),
-              title: Text(paymentMethod, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(paymentMethod.isNotEmpty ? paymentMethod : 'No Payment Method Available', style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('Default Payment Method'),
             ),
             ListTile(
               leading: const Icon(Icons.paypal, color: Colors.blue),
-              title: Text(paypalAccount, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(paypalAccount.isNotEmpty ? paypalAccount : 'No PayPal Account Available', style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('Linked PayPal Account'),
             ),
           ],
@@ -198,12 +207,12 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         ElevatedButton.icon(
           onPressed: () {
-            // Update Information logic
+            // Add functionality for updating the user info
           },
           icon: const Icon(Icons.update, color: Colors.white),
           label: const Text(
             'Update Info',
-            style: TextStyle(color: Colors.white), // Set label color to white
+            style: TextStyle(color: Colors.white),
           ),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

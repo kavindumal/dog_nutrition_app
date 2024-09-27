@@ -9,12 +9,15 @@ class Loginpage extends StatefulWidget {
   _LoginpageState createState() => _LoginpageState();
 }
 
+class UserSession {
+  static String emailAddressLoggedIn = '';
+}
+
 class _LoginpageState extends State<Loginpage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  static String emailAddressLoggedIn = '';
 
   bool _isLoading = false;
   String? _errorMessage;
@@ -29,7 +32,7 @@ class _LoginpageState extends State<Loginpage> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      emailAddressLoggedIn = _emailController.text.trim();
+      UserSession.emailAddressLoggedIn = _emailController.text;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => DashboardScreen()),

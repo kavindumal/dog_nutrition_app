@@ -1,4 +1,8 @@
 import 'package:dog_nutrition_app/pages/dashboard/pages/CartPage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/DryFoodPage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/SupplementsPage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/ToysPage.dart';
+import 'package:dog_nutrition_app/pages/dashboard/pages/WetFoodPage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE8F6FF),
+      backgroundColor: const Color(0xFFE8F6FF),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
@@ -18,11 +22,11 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart, color: Colors.black),
+            icon: const Icon(Icons.shopping_cart, color: Colors.black),
             onPressed: () {
               Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => CartPage())
+                  context,
+                  MaterialPageRoute(builder: (context) => const CartPage())
               );
             },
           ),
@@ -33,7 +37,7 @@ class HomePage extends StatelessWidget {
         children: [
           _buildPromotionsCarousel(),
           const SizedBox(height: 16),
-          _buildCategoriesSection(),
+          _buildCategoriesSection(context), // Passing context here
           const SizedBox(height: 16),
           _buildTopProductsSection(),
         ],
@@ -43,7 +47,7 @@ class HomePage extends StatelessWidget {
 
   // Promotion carousel
   Widget _buildPromotionsCarousel() {
-    return Container(
+    return SizedBox(
       height: 180,
       child: PageView(
         children: [
@@ -85,7 +89,7 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: Text(
                 promoText,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -99,7 +103,7 @@ class HomePage extends StatelessWidget {
   }
 
   // Categories section
-  Widget _buildCategoriesSection() {
+  Widget _buildCategoriesSection(BuildContext context) {
     final List<Map<String, String>> categories = [
       {'title': 'Dry Food', 'icon': 'assets/images_ui/dry_food.png'},
       {'title': 'Wet Food', 'icon': 'assets/images_ui/wet_food.png'},
@@ -110,16 +114,16 @@ class HomePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Categories',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         GridView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: categories.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1.2,
             crossAxisSpacing: 10,
@@ -129,6 +133,7 @@ class HomePage extends StatelessWidget {
             return _buildCategoryCard(
               categories[index]['title']!,
               categories[index]['icon']!,
+              context, // Passing context here
             );
           },
         ),
@@ -136,30 +141,53 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryCard(String title, String iconPath) {
-    return Card(
-      color: Colors.white,
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            iconPath,
-            height: 50,
-            fit: BoxFit.cover,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
+  Widget _buildCategoryCard(String title, String iconPath, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        _navigateToCategoryPage(context, title); // Use context here
+      },
+      child: Card(
+        color: Colors.white,
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              iconPath,
+              height: 50,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  // Top products section
+  void _navigateToCategoryPage(BuildContext context, String category) {
+    Widget page = const DryFoodPage(); // Default page
+
+    if (category == 'Dry Food') {
+      page = const DryFoodPage();
+    } else if (category == 'Wet Food') {
+      page = const Wetfoodpage(); // Change this to WetFoodPage when created
+    } else if (category == 'Supplements') {
+      page = const Supplementspage(); // Change this to SupplementsPage when created
+    } else if (category == 'Toys') {
+      page = const Toyspage(); // Change this to ToysPage when created
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+  }
+
   Widget _buildTopProductsSection() {
     final List<Map<String, String>> topProducts = [
       {'name': 'Premium Dry Food', 'price': '\$25', 'image': 'assets/images_ui/dry_food_product.png'},
@@ -170,7 +198,7 @@ class HomePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Top Products',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -204,9 +232,9 @@ class HomePage extends StatelessWidget {
             width: 50,
           ),
         ),
-        title: Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(price),
-        trailing: Icon(Icons.add_shopping_cart, color: Colors.blue),
+        trailing: const Icon(Icons.add_shopping_cart, color: Colors.blue),
         onTap: () {
           // Add to cart functionality
         },
