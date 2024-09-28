@@ -92,8 +92,7 @@ class _WetFoodPageState extends State<Wetfoodpage> {
     return Scaffold(
       backgroundColor: const Color(0xFFE8F6FF),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Dog Food & Nutrition'),
+        title: const Text('Wet Food'),
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
